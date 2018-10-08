@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">ImageUtil</string>
+    <string name="pick_image_intent_text">Pick image</string>
+</resources>
