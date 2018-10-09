@@ -1,5 +1,30 @@
 apply plugin: 'com.android.library'
 
+apply plugin: 'maven-publish'
+
+task sourceJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier "sources"
+}
+
+publishing {
+    publications {
+        bar(MavenPublication) {
+            groupId 'com.foo'
+            artifactId 'bar'
+            version '0.1'
+            artifact(sourceJar)
+            artifact("$buildDir/outputs/aar/bar-release.aar")
+        }
+    }
+    repositories {
+        google()
+        maven {
+            url "$buildDir/repo"
+        }
+    }
+}
+
 android {
     compileSdkVersion 27
 
@@ -32,3 +57,34 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 }
+
+ext {
+
+    //For bintray and jcenter distribution
+    bintrayRepo = 'maven'
+    bintrayName = 'maven'
+
+    publishedGroupId = 'com.example.imageutil'
+    libraryName = 'ApplicationNyobaNyoba'
+    artifact = 'imageutil' //This artifact name should be the same with library module name
+
+    libraryDescription = 'Simple, clean and short description'
+
+    siteUrl = 'https://github.com/thinkerbelll/sample-library'
+    gitUrl = 'https://github.com/thinkerbelll/sample-library.git'
+
+
+    libraryVersion = '1.0.0'
+
+    developerId = 'thinkerbelll'
+    developerName = 'your_name'
+    developerEmail = 'your_email'
+    organization = 'your_organization' // if you push to organization's repository.
+    licenseName = 'The Apache Software License, Version 2.0'  //Example for license
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+
+}
+//These two remote files contain Bintray configuration as described above.
+apply from: 'https://raw.githubusercontent.com/quangctkm9207/template-files/master/android/gradle/install.gradle'
+apply from: 'https://raw.githubusercontent.com/quangctkm9207/template-files/master/android/gradle/bintray.gradle'

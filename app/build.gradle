@@ -1,10 +1,6 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
     compileSdkVersion 27
     defaultConfig {
         applicationId "com.example.android_prog_01.applicationnyobanyoba"
@@ -13,11 +9,6 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-//        jackOptions {
-//            enabled true
-//            additionalParameters("jack.dex.debug.lines": "true")
-//            additionalParameters("jack.dex.debug.source": "true")
-//        }
     }
     buildTypes {
         release {
@@ -26,10 +17,6 @@ android {
         }
     }
 }
-
-//retrolambda {
-//    jdk '/path/to/java-8/jdk'
-//}
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -41,6 +28,4 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation 'io.reactivex.rxjava2:rxjava:2.1.1'
 }
-
-// apply plugin: 'me.tatarka.retrolambda' // make sure to apply last!
 
