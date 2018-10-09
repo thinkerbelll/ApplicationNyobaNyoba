@@ -3,8 +3,11 @@
 buildscript {
     
     repositories {
-        google()
+        maven {
+            url "https://jcenter.bintray.com"
+        }
         jcenter()
+        google()
     }
     dependencies {
         classpath 'digital.wup:android-maven-publish:3.6.2'
@@ -22,6 +25,7 @@ allprojects {
     repositories {
         google()
         jcenter()
+        mavenCentral()
     }
 }
 
